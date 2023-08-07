@@ -28,7 +28,7 @@ export default function Lobby(){
                 break;
             case "Fibonacci Sequence":
                 setInitialCode("/*\n   Implement a function that generates the first n numbers of the Fibonacci\n   sequence.\n*/\n\nfunction fibonacci(n) {\n  // Your code here\n}");
-                setSolution("/*\n   Implement a function that generates the first n numbers of the Fibonacci\n   sequence.\n*/\n\nfunction fibonacci(n) {\n  const sequence = [0, 1];\n for (let i = 2; i < n; i++) {\n const nextNumber = sequence[i - 1] + sequence[i - 2];\n sequence.push(nextNumber);\n} return sequence;\n}");
+                setSolution("/*\n   Implement a function that generates the first n numbers of the Fibonacci\n   sequence.\n*/\n\nfunction fibonacci(n) {\n  const sequence = [0, 1];\n  for (let i = 2; i < n; i++) {\n    const nextNumber = sequence[i - 1] + sequence[i - 2];\n    sequence.push(nextNumber);\n  }\n  return sequence;\n}");
                 console.log("Fibonacci Sequence");
                 break;
             case "Array Sum":
@@ -38,7 +38,7 @@ export default function Lobby(){
                 break;
             case "Palindrome Check":
                 setInitialCode("/*\n   Create a function that checks if a given string is a palindrome\n   (reads the same forwards and backwards).\n*/\n\nfunction isPalindrome(str) {\n  // Your code here\n}");
-                setSolution("/*\n   Create a function that checks if a given string is a palindrome\n   (reads the same forwards and backwards).\n*/\n\nfunction isPalindrome(str) {\n  const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');\n const reversedStr = cleanStr.split('').reverse().join('');\n return cleanStr === reversedStr;\n}");
+                setSolution("/*\n   Create a function that checks if a given string is a palindrome\n   (reads the same forwards and backwards).\n*/\n\nfunction isPalindrome(str) {\n  const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');\n  const reversedStr = cleanStr.split('').reverse().join('');\n  return cleanStr === reversedStr;\n}");
                 console.log("Palindrome Check");
                 break;
             default:
