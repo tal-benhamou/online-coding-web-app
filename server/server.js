@@ -9,33 +9,44 @@ const io = new Server(PORT, {
     }
 });
 
-
-let count = 0;
+const studentToMentorMap = new Map();
+const roomToMentorMap = new Map();
 
 io.on('connection', (socket) => {
     console.log(`A user with id : ${socket.id} connected`);
 
-    // listen for users to choose Code Block
+    // listen for users to choose Code Block (Room)
     socket.on('code_block_name', (codeBlockName) => {
 
         console.log(`A user with id : ${socket.id} chose code block name : ${codeBlockName}`);
-
-        // first user to choose codeBlockName is the mentor
-        if (count == 0){
-            socket.emit("is_mentor", true);
-        }
-        else{
+        
+        if (roomToMentorMap.has(codeBlockName) && roomToMentorMap.get(codeBlockName) != socket){
+            // student accessed the room
             socket.emit("is_mentor", false);
+            console.log(`A user with id : ${socket.id} is Student in the room : ${codeBlockName}`);
+            studentToMentorMap.set(socket, roomToMentorMap.get(codeBlockName));
         }
-        count+=1;
-
-
+        else {
+            // mentor accessed the room
+            socket.emit("is_mentor", true);
+            console.log(`A user with id : ${socket.id} is Mentor in the room : ${codeBlockName}`);
+            roomToMentorMap.set(codeBlockName, socket);
+        }
 
     });
 
     socket.on("student_code", (code) => {
-        socket.emit('student_code', code);
+        const mentorSocket = studentToMentorMap.get(socket);
+        if (mentorSocket)
+            mentorSocket.emit("mentor_code", code);
     });
+
+    socket.on("solved", (val) => {
+        const mentorSocket = studentToMentorMap.get(socket);
+        if (mentorSocket)
+            mentorSocket.emit("solved", val);
+    });
+
 
     socket.on('disconnect', () => {
         console.log(`A user with id : ${socket.id} disconnected`);

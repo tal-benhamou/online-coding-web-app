@@ -1,0 +1,57 @@
+.Lobby {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the title */
+.title {
+font-size: 1.5rem;
+margin-bottom: 20px;
+}
+
+/* Style the buttons */
+.button-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 20px;
+}
+
+.button {
+padding: 10px 20px;
+margin: 5px;
+font-size: 1rem;
+background-color: #007bff;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.button:hover {
+background-color: #0056b3;
+}
+
+/* Style the "Back" button */
+.back-button {
+margin-top: 10px;
+text-align: center;
+}
+
+.back-button button {
+padding: 10px 20px;
+font-size: 1rem;
+background-color: #dc3545;
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.back-button button:hover {
+background-color: #c82333;
+}
