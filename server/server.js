@@ -4,7 +4,11 @@ const MyMongoDB = require('./service/MyMongoDB');
 const PORT = 3001;
 const url = "https://online-coding-web-app-production-515c.up.railway.app:3001";
 
-const io = new Server(PORT);
+const io = new Server(PORT, {
+    cors: {
+        origin: url
+    }
+});
 
 const myDB = new MyMongoDB();
 const studentToMentorMap = new Map();
