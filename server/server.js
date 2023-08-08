@@ -2,7 +2,8 @@ const { Server } = require("socket.io");
 const { createServer } = require("http");
 const MyMongoDB = require('./service/MyMongoDB');
 
-const PORT = 6750;
+const PORT = 6279;
+const ip = '0.0.0.0';
 const url = "https://online-coding-web-app-production-515c.up.railway.app";
 const httpServer = createServer();
 
@@ -71,6 +72,6 @@ io.on('connection', (socket) => {
         console.log(`A user with id : ${socket.id} disconnected`);
     });
 });
-httpServer.listen(process.env.PORT, '0.0.0.0', ()=>{
-    console.log(`Server is listening on Port : ${process.env.PORT}`);
+httpServer.listen(process.env.PORT, ip, () => {
+    console.log(`Server is running at https://${ip}:${process.env.PORT}/`);
 });
