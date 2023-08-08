@@ -27,5 +27,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Two equal columns for the inner grid */
     gap: 10px; /* Add some spacing between the divs */
+    align-items: center;
   }
   
