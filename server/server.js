@@ -15,13 +15,13 @@ const myDB = new MyMongoDB();
 const studentToMentorMap = new Map();
 const roomToMentorMap = new Map();
 
-const findStudentSocket = (codeBlockName, studentId) => {
+const findStudentSocket = (studentId) => {
     for (const socketStudent in studentToMentorMap.keys()) {
-        const mentor = roomToMentorMap.get(codeBlockName);
-        if (socketStudent == mentor)
-            pass
+        if (socketStudent.id == studentId){
+            return socketStudent;
+        }
     }
-}
+};
 
 io.on('connection', (socket) => {
     console.log(`A user with id : ${socket.id} connected`);
@@ -73,11 +73,11 @@ io.on('connection', (socket) => {
         myDB.update(codeBlockName, mentorId, updateOperation);
     });
 
-    socket.on("student_leave", (studentId, codeBlockName) => {
+    socket.on("student_leave", (studentId) => {
         /* TODO: BUGGGGG */
-        socket = findStudentSocket(codeBlockName, studentId);
+        socket = findStudentSocket(studentId);
         studentToMentorMap.delete(socket);
-    })
+    });
 
     socket.on('disconnect', () => {
         console.log(`A user with id : ${socket.id} disconnected`);
