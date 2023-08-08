@@ -2,13 +2,9 @@ const { Server } = require("socket.io");
 const MyMongoDB = require('./service/MyMongoDB');
 
 const PORT = 3001;
-const localhost = "http://172.17.0.189:7611";
+const url = "https://online-coding-web-app-production-515c.up.railway.app:3001";
 
-const io = new Server(PORT, {
-    cors: {
-        origin: localhost
-    }
-});
+const io = new Server(PORT);
 
 const myDB = new MyMongoDB();
 const studentToMentorMap = new Map();
