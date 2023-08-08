@@ -6,6 +6,9 @@ const PORT = 6750;
 const url = "https://online-coding-web-app-production-515c.up.railway.app";
 const httpServer = createServer();
 
+console.log(`process.env.PORT : ${process.env.PORT}`);
+console.log(`process.env.PORT : ${$PORT}`);
+
 const io = new Server(httpServer, {
     cors: {
         origin: "*",
@@ -69,6 +72,6 @@ io.on('connection', (socket) => {
         console.log(`A user with id : ${socket.id} disconnected`);
     });
 });
-httpServer.listen(PORT, ()=>{
+httpServer.listen(PORT, '0.0.0.0', ()=>{
     console.log(`Server is listening on Port : ${PORT}`);
 });
