@@ -1,12 +1,15 @@
 const { Server } = require("socket.io");
+const { createServer } = require("http");
 const MyMongoDB = require('./service/MyMongoDB');
 
 const PORT = 6750;
 const url = "https://online-coding-web-app-production-515c.up.railway.app";
+const httpServer = createServer();
 
-const io = new Server(PORT, {
+const io = new Server(httpServer, {
     cors: {
-        origin: url
+        origin: url,
+        methods: ["GET", "POST"]
     }
 });
 
@@ -65,4 +68,7 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log(`A user with id : ${socket.id} disconnected`);
     });
+});
+httpServer.listen(PORT, ()=>{
+    console.log(`Server is listening on Port : ${PORT}`);
 });
