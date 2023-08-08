@@ -49,9 +49,13 @@ export default function Lobby(){
     }
 
     const handleBack = () => {
+        if (isMantor){
+            socket.emit("mentor_leave", socket.id, codeBlockName);
+        }
         setShowCode(false);
         setCodeBlockName("");
         setSolution("");
+
     };
 
     useEffect(()=>{
