@@ -1,8 +1,8 @@
 const { Server } = require("socket.io");
 const MyMongoDB = require('./service/MyMongoDB');
 
-const PORT = 3001;
-const url = "https://online-coding-web-app-production-515c.up.railway.app:3001";
+const PORT = 6750;
+const url = "https://online-coding-web-app-production-515c.up.railway.app";
 
 const io = new Server(PORT, {
     cors: {
