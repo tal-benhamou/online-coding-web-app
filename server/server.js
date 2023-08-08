@@ -35,7 +35,7 @@ io.on('connection', (socket) => {
             // student accessed the room
             socket.emit("is_mentor", false);
             console.log(`A user with id : ${socket.id} is Student in the room : ${codeBlockName}`);
-            studentToMentorMap.set(socket, roomToMentorMap.get(codeBlockName));
+            studentToMentorMap.set(1, roomToMentorMap.get(codeBlockName));
             const updateOperation = {
                 $push: { students: socket.id }
             };
@@ -73,11 +73,11 @@ io.on('connection', (socket) => {
         myDB.update(codeBlockName, mentorId, updateOperation);
     });
 
-    socket.on("student_leave", (studentId) => {
-        /* TODO: BUGGGGG */
-        socket = findStudentSocket(studentId);
-        studentToMentorMap.delete(socket);
-    });
+    // socket.on("student_leave", (studentId) => {
+    //     /* TODO: BUGGGGG */
+    //     socket = findStudentSocket(studentId);
+    //     studentToMentorMap.delete(socket);
+    // });
 
     socket.on('disconnect', () => {
         console.log(`A user with id : ${socket.id} disconnected`);

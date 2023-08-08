@@ -54,7 +54,7 @@ export default function Lobby(){
         }
         else{
             /* try to pass codeBlockName and socket.id */
-            socket.emit("student_leave", socket.id);
+            // socket.emit("student_leave", socket.id);
         }
         setShowCode(false);
         setCodeBlockName("");
