@@ -53,7 +53,8 @@ export default function Lobby(){
             socket.emit("mentor_leave", socket.id, codeBlockName);
         }
         else{
-            socket.emit("student_leave", socket);
+            /* try to pass codeBlockName and socket.id */
+            socket.emit("student_leave", socket.id, codeBlockName);
         }
         setShowCode(false);
         setCodeBlockName("");
