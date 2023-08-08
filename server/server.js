@@ -1,9 +1,7 @@
 const { Server } = require("socket.io");
-// const { createServer } = require("http");
 const MyMongoDB = require('./service/MyMongoDB');
 
 const ip = '0.0.0.0';
-// const httpServer = createServer();
 
 const io = new Server(process.env.PORT, {
     cors: {
@@ -61,10 +59,15 @@ io.on('connection', (socket) => {
         const updateOperation = {
             $set: { endDateTime: new Date().toString() }
         };
+        /*remove mentor from roomToMentorMap*/
+        roomToMentorMap.delete(codeBlockName);
         console.log("mentor leaved", mentorId, codeBlockName);
-        `TODO: remove mentor from roomToMentorMap`
         myDB.update(codeBlockName, mentorId, updateOperation);
     });
+
+    socket.on("student_leave", (socket) => {
+        studentToMentorMap.delete(socket);
+    })
 
     socket.on('disconnect', () => {
         console.log(`A user with id : ${socket.id} disconnected`);

@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import '../css/Lobby.css';
 
 
-const socket = io(`wss://online-coding-web-app.up.railway.app:${process.env.PORT}/ws`);
+const socket = io(`wss://online-coding-web-app.up.railway.app`);
 
 export default function Lobby(){
     const [showCode, setShowCode] = useState(false);
@@ -51,6 +51,9 @@ export default function Lobby(){
     const handleBack = () => {
         if (isMantor){
             socket.emit("mentor_leave", socket.id, codeBlockName);
+        }
+        else{
+            socket.emit("student_leave", socket);
         }
         setShowCode(false);
         setCodeBlockName("");
