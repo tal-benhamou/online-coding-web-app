@@ -52,10 +52,6 @@ export default function Lobby(){
         if (isMantor){
             socket.emit("mentor_leave", socket.id, codeBlockName);
         }
-        else{
-            /* try to pass codeBlockName and socket.id */
-            // socket.emit("student_leave", socket.id);
-        }
         setShowCode(false);
         setCodeBlockName("");
         setSolution("");

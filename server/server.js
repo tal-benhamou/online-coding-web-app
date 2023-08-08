@@ -1,8 +1,6 @@
 const { Server } = require("socket.io");
 const MyMongoDB = require('./service/MyMongoDB');
 
-const ip = '0.0.0.0';
-
 const io = new Server(process.env.PORT, {
     cors: {
         origin: "*",
@@ -14,14 +12,6 @@ console.log(`Server is listening on Port : ${process.env.PORT}`);
 const myDB = new MyMongoDB();
 const studentToMentorMap = new Map();
 const roomToMentorMap = new Map();
-
-const findStudentSocket = (studentId) => {
-    for (const socketStudent in studentToMentorMap.keys()) {
-        if (socketStudent.id == studentId){
-            return socketStudent;
-        }
-    }
-};
 
 io.on('connection', (socket) => {
     console.log(`A user with id : ${socket.id} connected`);
@@ -72,12 +62,6 @@ io.on('connection', (socket) => {
         console.log("mentor leaved", mentorId, codeBlockName);
         myDB.update(codeBlockName, mentorId, updateOperation);
     });
-
-    // socket.on("student_leave", (studentId) => {
-    //     /* TODO: BUGGGGG */
-    //     socket = findStudentSocket(studentId);
-    //     studentToMentorMap.delete(socket);
-    // });
 
     socket.on('disconnect', () => {
         console.log(`A user with id : ${socket.id} disconnected`);
