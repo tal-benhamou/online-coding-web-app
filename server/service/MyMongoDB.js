@@ -1,6 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const uri = "mongodb://localhost:27017"
+const uri = "mongodb://mongo:6dtPFqrATWc7q2UcuV4i@containers-us-west-154.railway.app:5840"
 class MyMongoDB {
 
     initClient(){

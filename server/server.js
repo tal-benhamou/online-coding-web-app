@@ -2,7 +2,7 @@ const { Server } = require("socket.io");
 const MyMongoDB = require('./service/MyMongoDB');
 
 const PORT = 3001;
-const localhost = "http://localhost:3000";
+const localhost = "http://localhost:6218";
 
 const io = new Server(PORT, {
     cors: {
