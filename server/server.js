@@ -2,13 +2,13 @@ const { Server } = require("socket.io");
 const { createServer } = require("http");
 const MyMongoDB = require('./service/MyMongoDB');
 
-const PORT = 6750;
+const PORT = 3000;
 const url = "https://online-coding-web-app-production-515c.up.railway.app";
 const httpServer = createServer();
 
 const io = new Server(httpServer, {
     cors: {
-        origin: url,
+        origin: "*",
         methods: ["GET", "POST"]
     }
 });
