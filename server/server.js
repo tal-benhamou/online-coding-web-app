@@ -11,7 +11,7 @@ const io = new Server(process.env.PORT, {
         methods: ["GET", "POST"]
     }
 });
-console.log(`Server is listening on Port : 3000`);
+console.log(`Server is listening on Port : ${process.env.PORT}`);
 
 const myDB = new MyMongoDB();
 const studentToMentorMap = new Map();

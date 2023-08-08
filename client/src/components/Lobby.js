@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import '../css/Lobby.css';
 
 
-const socket = io("wss://online-coding-web-app.up.railway.app");
+const socket = io(`wss://online-coding-web-app.up.railway.app:${process.env.PORT}/ws`);
 
 export default function Lobby(){
     const [showCode, setShowCode] = useState(false);
