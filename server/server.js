@@ -41,7 +41,7 @@ io.on('connection', (socket) => {
 
     });
 
-    // student change the code and emit the change to mentor's socket
+    // student changes the code and emit the changes to mentor's socket
     socket.on("student_code", (code) => {
         const mentorSocket = studentToMentorMap.get(socket);
         if (mentorSocket)

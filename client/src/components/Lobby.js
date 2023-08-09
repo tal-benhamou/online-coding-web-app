@@ -68,7 +68,12 @@ export default function Lobby(){
     return (
         <div className="Lobby">
             {showCode ? (
-                <CodeBlock socket={socket} codeBlockName={codeBlockName} initialCode={initialCode} isMentor={isMantor} solution={solution} />
+                <div>
+                    <CodeBlock socket={socket} codeBlockName={codeBlockName} initialCode={initialCode} isMentor={isMantor} solution={solution} />
+                    <div className="back-button">
+                        <button onClick={handleBack}>Back</button>
+                    </div>
+                </div>
             ) : (
                 <div>
                     <h1 className="title">Choose Code Block</h1>
@@ -80,9 +85,9 @@ export default function Lobby(){
                     </div>
                 </div>
             )}
-            <div className="back-button">
+            {/* <div className="back-button">
                 <button onClick={handleBack}>Back</button>
-            </div>
+            </div> */}
         </div>
     );
 };
