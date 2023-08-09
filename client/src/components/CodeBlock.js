@@ -3,8 +3,8 @@ import Highlight from 'react-highlight';
 import 'highlight.js/styles/github.css';
 import '../css/CodeBlock.css';
 import SmileyFace from './SmilyFace';
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
 export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCode, solution }) {
@@ -55,10 +55,10 @@ export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCod
                             onChange={handleInputChange}
                             className="code-textarea"
                         /> */}
-                        <CKEditor
-                            editor={ ClassicEditor }
-                            data={ code }
-                            onChange={ handleInputChange }
+                        <ReactQuill
+                            theme='snow'
+                            value={code}
+                            onChange={handleInputChange}
                         />
                     </div>
                     )}
