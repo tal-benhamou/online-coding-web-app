@@ -3,9 +3,6 @@ import Highlight from 'react-highlight';
 import 'highlight.js/styles/github.css';
 import '../css/CodeBlock.css';
 import SmileyFace from './SmilyFace';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-
 
 export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCode, solution }) {
 
@@ -48,17 +45,12 @@ export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCod
                 <div className={isMentor ? "code-grid-mentor" : "code-grid"}>
                     {!isMentor && (
                     <div className='student-code'>
-                        {/* <textarea
+                        <textarea
                             rows={20}
                             cols={90}
                             value={code}
                             onChange={handleInputChange}
                             className="code-textarea"
-                        /> */}
-                        <ReactQuill
-                            theme='snow'
-                            value={code}
-                            onChange={handleInputChange}
                         />
                     </div>
                     )}
