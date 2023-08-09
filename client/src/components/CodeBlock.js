@@ -22,7 +22,6 @@ export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCod
         }
     };
 
-    // mentor socket
     useEffect(() => {
         socket.on("mentor_code", (newCode) => {
             setMentorCode(newCode);
@@ -39,12 +38,12 @@ export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCod
                 <h2>Code Block: {title}</h2>
             </div>
             <div className="p-element">
-                <p>{isMentor ? 'Mentor' : 'Student'}</p>
+                <p>{isMentor ? "Mentor" : "Student"}</p>
             </div>
             {!solved ? (
                 <div className={isMentor ? "code-grid-mentor" : "code-grid"}>
                     {!isMentor && (
-                    <div className='student-code'>
+                    <div className="student-code">
                         <textarea
                             rows={20}
                             cols={90}

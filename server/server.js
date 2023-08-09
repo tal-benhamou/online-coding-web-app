@@ -13,11 +13,11 @@ const myDB = new MyMongoDB();
 const studentToMentorMap = new Map();
 const roomToMentorMap = new Map();
 
-io.on('connection', (socket) => {
+io.on("connection", (socket) => {
     console.log(`A user with id : ${socket.id} connected`);
 
     // listen for users to choose Code Block (Room)
-    socket.on('code_block_name', (codeBlockName) => {
+    socket.on("code_block_name", (codeBlockName) => {
 
         console.log(`A user with id : ${socket.id} chose code block name : ${codeBlockName}`);
         
@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
     socket.on("mentor_leave", (mentorId, codeBlockName) => removeMentorfromRoom(mentorId, codeBlockName));
 
     // client disconnect
-    socket.on('disconnect', () => {
+    socket.on("disconnect", () => {
         console.log(`A user with id : ${socket.id} disconnected`);
         let keyToDelete = null;
         for (const [key, value] of roomToMentorMap) {

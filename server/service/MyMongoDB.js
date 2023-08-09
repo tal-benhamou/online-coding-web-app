@@ -10,6 +10,11 @@ class MyMongoDB {
         console.log("client connected to DB");
     }
 
+    /**
+     * Insert new Document into the DB.
+     * @param roomName - The selected code block.
+     * @param mentorId - The mentor.
+     */
     async insertDoc(roomName, mentorId) {
         try{
             this.initClient();
@@ -31,6 +36,12 @@ class MyMongoDB {
         }
     }
 
+    /**
+     * Updating an existing document.
+     * @param {*} roomName - The selected code block.
+     * @param {*} mentorId - The mentor.
+     * @param {*} updateOperation - The operation to updating.
+     */
     async update(roomName, mentorId, updateOperation) {
         const filter = {
             roomName: roomName,

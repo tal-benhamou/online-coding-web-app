@@ -85,9 +85,6 @@ export default function Lobby(){
                     </div>
                 </div>
             )}
-            {/* <div className="back-button">
-                <button onClick={handleBack}>Back</button>
-            </div> */}
         </div>
     );
 };
