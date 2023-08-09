@@ -3,6 +3,8 @@ import Highlight from 'react-highlight';
 import 'highlight.js/styles/github.css';
 import '../css/CodeBlock.css';
 import SmileyFace from './SmilyFace';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 
 export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCode, solution }) {
@@ -46,12 +48,17 @@ export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCod
                 <div className={isMentor ? "code-grid-mentor" : "code-grid"}>
                     {!isMentor && (
                     <div className='student-code'>
-                        <textarea
+                        {/* <textarea
                             rows={20}
                             cols={90}
                             value={code}
                             onChange={handleInputChange}
                             className="code-textarea"
+                        /> */}
+                        <CKEditor
+                            editor={ ClassicEditor }
+                            data={ code }
+                            onChange={ handleInputChange }
                         />
                     </div>
                     )}

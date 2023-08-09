@@ -53,16 +53,6 @@ io.on('connection', (socket) => {
             mentorSocket.emit("solved", val);
     });
 
-    // socket.on("mentor_leave", (mentorId, codeBlockName) => {
-    //     const updateOperation = {
-    //         $set: { endDateTime: new Date().toString() }
-    //     };
-    //     /*remove mentor from roomToMentorMap*/
-    //     roomToMentorMap.delete(codeBlockName);
-    //     console.log("mentor leaved", mentorId, codeBlockName);
-    //     myDB.update(codeBlockName, mentorId, updateOperation);
-    // });
-
     socket.on("mentor_leave", (mentorId, codeBlockName) => removeMentorfromRoom(mentorId, codeBlockName));
 
     socket.on('disconnect', () => {
