@@ -49,10 +49,11 @@ export default function Lobby(){
     }
 
     const handleBack = () => {
-        if (isMantor){
+        if (isMantor && showCode){
             socket.emit("mentor_leave", socket.id, codeBlockName);
         }
         setShowCode(false);
+        setIsMentor(false);
         setCodeBlockName("");
         setSolution("");
 

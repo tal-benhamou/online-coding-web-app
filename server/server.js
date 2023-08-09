@@ -21,7 +21,7 @@ io.on('connection', (socket) => {
 
         console.log(`A user with id : ${socket.id} chose code block name : ${codeBlockName}`);
         
-        if (roomToMentorMap.has(codeBlockName) && roomToMentorMap.get(codeBlockName) != socket){
+        if (roomToMentorMap.has(codeBlockName)){
             // student accessed the room
             socket.emit("is_mentor", false);
             console.log(`A user with id : ${socket.id} is Student in the room : ${codeBlockName}`);
@@ -53,17 +53,38 @@ io.on('connection', (socket) => {
             mentorSocket.emit("solved", val);
     });
 
-    socket.on("mentor_leave", (mentorId, codeBlockName) => {
-        const updateOperation = {
-            $set: { endDateTime: new Date().toString() }
-        };
-        /*remove mentor from roomToMentorMap*/
-        roomToMentorMap.delete(codeBlockName);
-        console.log("mentor leaved", mentorId, codeBlockName);
-        myDB.update(codeBlockName, mentorId, updateOperation);
-    });
+    // socket.on("mentor_leave", (mentorId, codeBlockName) => {
+    //     const updateOperation = {
+    //         $set: { endDateTime: new Date().toString() }
+    //     };
+    //     /*remove mentor from roomToMentorMap*/
+    //     roomToMentorMap.delete(codeBlockName);
+    //     console.log("mentor leaved", mentorId, codeBlockName);
+    //     myDB.update(codeBlockName, mentorId, updateOperation);
+    // });
+
+    socket.on("mentor_leave", (mentorId, codeBlockName) => removeMentorfromRoom(mentorId, codeBlockName));
 
     socket.on('disconnect', () => {
         console.log(`A user with id : ${socket.id} disconnected`);
+        let keyToDelete = null;
+        for (const [key, value] of roomToMentorMap) {
+            if (socket == value) {
+                keyToDelete = key;
+                break;
+            }
+        }
+        if (keyToDelete)
+            removeMentorfromRoom(socket.id, keyToDelete);
     });
 });
+
+function removeMentorfromRoom(mentorId, codeBlockName) {
+    const updateOperation = {
+        $set: { endDateTime: new Date().toString() }
+    };
+    /*remove mentor from roomToMentorMap*/
+    roomToMentorMap.delete(codeBlockName);
+    console.log("mentor leaved", mentorId, codeBlockName);
+    myDB.update(codeBlockName, mentorId, updateOperation);
+}

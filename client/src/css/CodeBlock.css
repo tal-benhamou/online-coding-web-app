@@ -3,29 +3,35 @@
     grid-template-rows: auto auto 1fr; 
     grid-template-columns: 1fr; 
     gap: 10px; 
-  }
-  
-  .highlighted-code{
-    padding: 1px; 
-    border: 1px solid #ccc; 
-  }
-  
-  .student-code {
-    padding: 1px; 
-    border: 1px solid #ccc; 
-  }
-  
-  .title {
-    text-align: center; 
-  }
-  
-  .p-element {
-    text-align: center; 
-  }
-  
-  .code-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 10px; 
-  }
+}
+
+.highlighted-code{
+  padding: 1px; 
+  border: 1px solid #ccc; 
+}
+
+.student-code {
+  padding: 1px; 
+  border: 1px solid #ccc; 
+}
+
+.title {
+  text-align: center; 
+}
+
+.p-element {
+  text-align: center; 
+}
+
+.code-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px; 
+}
+
+.code-grid-mentor {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); 
+  gap: 10px; 
+}
   

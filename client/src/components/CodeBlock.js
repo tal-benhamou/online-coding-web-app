@@ -43,7 +43,7 @@ export default function CodeBlock ({ socket, codeBlockName, isMentor, initialCod
                 <p>{isMentor ? 'Mentor' : 'Student'}</p>
             </div>
             {!solved ? (
-                <div className="code-grid">
+                <div className={isMentor ? "code-grid-mentor" : "code-grid"}>
                     {!isMentor && (
                     <div className='student-code'>
                         <textarea
