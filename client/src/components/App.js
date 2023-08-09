@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
-import Lobby from './components/Lobby';
+import '../css/App.css';
+import Lobby from './Lobby';
 
 function App() {
   return (

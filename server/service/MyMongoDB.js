@@ -1,22 +1,13 @@
 const { MongoClient } = require("mongodb");
 
 const uri = process.env.MONGO_URL
+
 class MyMongoDB {
 
     initClient(){
         this.client = new MongoClient(uri);
         this.myColl = this.client.db('OnlineCoding').collection('Sessions');
         console.log("client connected to DB");
-    }
-
-    async find(query) {
-        try{
-            this.initClient();
-            return await this.myColl.findOne(query);
-        }
-        finally{
-            this.closeConnection();
-        }
     }
 
     async insertDoc(roomName, mentorId) {
@@ -46,9 +37,8 @@ class MyMongoDB {
             mentorId: mentorId,
             endDateTime: null
         }
-        this.initClient()
-
         try{
+            this.initClient();
             await this.myColl.updateOne(filter, updateOperation);
         }
         catch (e){

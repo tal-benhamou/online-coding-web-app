@@ -41,6 +41,7 @@ io.on('connection', (socket) => {
 
     });
 
+    // student change the code and emit the change to mentor's socket
     socket.on("student_code", (code) => {
         const mentorSocket = studentToMentorMap.get(socket);
         if (mentorSocket)
@@ -53,8 +54,10 @@ io.on('connection', (socket) => {
             mentorSocket.emit("solved", val);
     });
 
+    // mentor leave the room
     socket.on("mentor_leave", (mentorId, codeBlockName) => removeMentorfromRoom(mentorId, codeBlockName));
 
+    // client disconnect
     socket.on('disconnect', () => {
         console.log(`A user with id : ${socket.id} disconnected`);
         let keyToDelete = null;
@@ -73,7 +76,7 @@ function removeMentorfromRoom(mentorId, codeBlockName) {
     const updateOperation = {
         $set: { endDateTime: new Date().toString() }
     };
-    /*remove mentor from roomToMentorMap*/
+    // remove mentor from roomToMentorMap
     roomToMentorMap.delete(codeBlockName);
     console.log("mentor leaved", mentorId, codeBlockName);
     myDB.update(codeBlockName, mentorId, updateOperation);
