@@ -10,8 +10,15 @@ export default function Lobby(){
     const [showCode, setShowCode] = useState(false);
     const [codeBlockName, setCodeBlockName] = useState("");
     const [initialCode, setInitialCode] = useState("");
-    const [isMantor, setIsMentor] = useState(true);
+    const [isMantor, setIsMentor] = useState(null);
     const [solution, setSolution] = useState("");
+
+    const buttonData = [
+        'String Reversal',
+        'Fibonacci Sequence',
+        'Array Sum',
+        'Palindrome Check'
+    ];
 
     const handleCodeBlock = (codeBlockName) => {
 
@@ -78,10 +85,15 @@ export default function Lobby(){
                 <div>
                     <h1 className="title">Choose Code Block</h1>
                     <div className="button-container">
-                        <button className="button" onClick={() => handleCodeBlock('String Reversal')}>String Reversal</button>
-                        <button className="button" onClick={() => handleCodeBlock('Fibonacci Sequence')}>Fibonacci Sequence</button>
-                        <button className="button" onClick={() => handleCodeBlock('Array Sum')}>Array Sum</button>
-                        <button className="button" onClick={() => handleCodeBlock('Palindrome Check')}>Palindrome Check</button>
+                        {buttonData.map((label, index) => (
+                            <button
+                                key={index}
+                                className="button"
+                                onClick={() => handleCodeBlock(label)}
+                            >
+                                {label}
+                            </button>
+                        ))}
                     </div>
                 </div>
             )}
